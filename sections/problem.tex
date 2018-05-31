@@ -1,0 +1,12 @@
+Technology or modulation recognition can be framed as a N-class classification problem in general. A general representation for the received signal is given by
+\begin{equation}
+\begin{aligned}
+r(t)&=s(t)*c(t)+n(t),
+\end{aligned}
+\label{eq_full}
+\end{equation}
+where $s(t)$ is the noise free complex baseband envelope of the received signal, $n(t)$ is \ac{awgn} with zero mean and variance $\sigma_n^2$ and $c(t)$ is the time varying impulse response of the transmitted wireless channel. The basic aim of any modulation classifier is to give out $P(s(t)\in N_i| r(t))$ with $r(t)$ as the only signal for reference and $N_i$ represents the $i$th class. The received signal $r(t)$ is commonly represented in \ac{iq} format due to its flexibility and simplicity for mathematical operations and hardware design. The in-phase and quadrature components are expressed as $I = A cos(\phi)$ and $Q = A sin(\phi)$, where $A$ and $\phi$ are the instantaneous amplitude and phase of the received signal $r(t)$.
+
+The RadioML and modified RadioML datasets used for testing the proposed model, presented in the next section of this paper, follow the signal representation as given in equation~\ref{eq_full}. These datasets make a practical assumption that the sensor's sampling rate is high enough to receive the full-bandwidth signal of interest at the receiver end as $r(t)$. The datasets also take into account complex receiver imperfections which are explained in detail in Section~\ref{dataset}. The \textit{samples per symbol} parameter used in the tables~\ref{table_rml_dataset} and \ref{table_modrml_dataset} specify the number of samples representing each modulated symbol which is a modulation characteristic. Similarly \textit{sample length} parameter specifies the number of received signal samples used for classification.
+
+

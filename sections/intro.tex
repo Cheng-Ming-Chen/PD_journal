@@ -1,0 +1,86 @@
+% \begin{itemize}
+% \item What is the problem?
+% \begin{itemize}
+% \item Distributed wireless technology/modulation classification
+% \end{itemize}
+% \item    Why is it interesting and important?
+% \begin{itemize}
+% \item Technology classification for anomaly detection
+% \item Interference classification for environment analysis in cognitive radios
+% \item Interference detection for full-duplex radios?
+% \item Interference classification for WSN, for schedule adaptation
+% \end{itemize}
+% \item    Why is it hard? (Why do naive approaches fail?)
+% \begin{itemize}
+% \item Classic models use expert feature extraction, such as cyclostationary features which is computationally expensive
+% \item Manual expert feature extraction is tedious
+% \item Difficult to develop models which are robust to channel variations, SNR variations, time shift and sample rate variations
+% \item For distributed classification, collection of IQ (complex) data over frequency, space and time is expensive in terms of transmission bandwidth and storage
+% \item Algorithms are processor intensive and could not be easily deployed on low-end sensors
+% \end{itemize}
+%  \item What's wrong with previous proposed solutions?
+%  \begin{itemize}
+%  \item Problems with expert feature extraction
+%  \item Fixed length CNN model issues
+% \end{itemize}
+% \item  What are the key components of our approach and results? Also include any specific limitations. 
+% \begin{itemize}
+% \item Variable length model that can capture sample rate variations without explicit feature extraction
+% \item We study technology classification for a deployed distributed sensor network (Electrosense)
+% \begin{itemize}
+% \item Based on magnitude FFT data
+% \item Based on complex data
+% \end{itemize}
+% \item Models are binarized for deployment on sensors and performance comparisons are provided
+% \item Limitations of averaged FFT models
+% \end{itemize}
+
+% \item Our key contributions
+% \begin{itemize}
+% \item New deep learning models for FFT and IQ pipeline
+% \item LSTM model beats SoA model on a standard RadioML dataset
+% \item We summarize performance results for binarized models
+% \item Distributed modulation classification using Electrosense 
+% \item New public dataset for variable sample rates
+% \item All models are made public for future research
+% \end{itemize}
+% \end{itemize}
+
+Wireless spectrum monitoring over frequency, time and space is important for a wide range of applications such as spectrum enforcement for regulatory bodies, generating coverage maps for wireless operators, and applications including wireless signal detection and positioning. Continuous spectrum monitoring over a large geographical area is extremely challenging mainly due to the multidisciplinary nature of the solution. The monitoring infrastructure requires proper integration of new disruptive technologies than can flexibly address the variability and cost of the used sensors, large spectrum data management, sensor reliability, security and privacy concerns, which can also target a wide variety of the use cases. Electrosense was designed to address these challenges and support a diverse set of applications \cite{electrosense}. Electrosense is a crowd-sourced spectrum monitoring solution deployed on a large scale using low cost sensors.
+
+One of the main goals of Electrosense is to accomplish automated wireless spectrum anomaly detection, thus enabling efficient spectrum enforcement. Technology classification or specifically Automatic Modulation Classification (\ac{amc}) is an integral part of spectrum enforcement. Such a classifier can help in identifying suspicious transmissions in a particular wireless band. Furthermore, technology classification modules are fundamental for interference detection and wireless environment analysis. %Fast interference detection modules can also improve the performance of full duplex radios by aiding the interference cancellation. \sofie{I think this example is too specific for here}
+%Technology classification is also %widely 
+%used in \ac{wsn} for adapting the schedule of the wireless sensors as function of the detected interfering technology. 
+Considering the aforementioned large application space this paper looks into two key aspects: Is efficient wireless technology classification achievable on a large scale with low cost sensor networks and limited uplink communication bandwidth? If possible, which are the key classification models suitable for the same.
+
+
+The number of publications related to \ac{amc} appearing in literature is large \cite{txminer,dof,litsurvey,gardner_unif,zaihe_thesis,cyclo_test} mainly due to the broad range of problems associated with \ac{amc} and huge interest in the problem itself for surveillance applications. \ac{amc} helps a radio system for environment identification, defining policies and taking actions for throughput or reliability improvements. It is also used for applications like transmitter identification, anomaly detection and localization of interference \cite{txminer,dof}. 
+
+Various approaches for modulation classification discussed in literature can be brought down to two categories \cite{litsurvey}, one being the \emph{decision theoretic} approach and the other the \emph{feature based} approach. In decision-theoretic approaches the modulation classification problem is presented as a multiple hypothesis \mbox{testing problem \cite{litsurvey}}. %Assuming that each possible modulation scheme occurs with a same probability\sofie{is this assumption really needed? You can also weigh the distribution with the prior probability of each scheme?}
+The maximum likelihood criterion is applied to the received signal directly or after some simple transformations such as averaging. Even though decision-theoretic classifiers are optimal in the sense that they minimize the probability of miss-classifications, practical implementations of such systems suffer from computational complexity as they typically require buffering a large number of samples. These methods are also not robust in the presence of unknown channel conditions and other receiver discrepancies like clock frequency offset. 
+
+Conventional feature-based approaches for \ac{amc} make use of expert features like cyclic moments \cite{gardner_unif}. Spectral correlation functions of various analog and digital modulation schemes covered in \cite{scf_analog} and \cite{scf_digital} respectively are the popularly used features for classification. Detailed analysis of various methods using these cyclostationary features for modulation classification are presented in \cite{zaihe_thesis}. Various statistical tests for detecting the presence of cycles in the $k$th-order cyclic cumulants without assuming any specific distribution on the data are presented in \cite{cyclo_test}. In \cite{scf_nn} authors used a multilayer linear perceptron network over spectral correlation functions for classifying some basic modulation types. Another method makes use of the cyclic prefix \cite{ofdm_classif} to distinguish between multi-carrier and single carrier modulation schemes which is used for \ac{ofdm} signal identification. 
+
+
+All these aforementioned model driven approaches exploit knowledge about the structure of different modulation schemes to define the rules for \ac{amc}. This manual selection of expert features is tedious which makes it difficult to model all channel discrepancies. For instance, it is quite challenging to develop models which are robust to 
+%channel, SNR, 
+fading, pathloss, time shift and sample rate variations. In addition, a distributed collection of \ac{iq} data over frequency, space and time is expensive in terms of transmission bandwidth and storage. Furthermore, most of these algorithms are processor intensive and could not be easily deployed on low-end distributed sensors.
+
+
+Recently, deep learning has been shown to be effective in various tasks such as image classification, machine translation, automatic speech recognition \cite{deeplearn} and network optimization \cite{cobanets}, thanks to multiple hidden layers with non-linear logistic functions which enable learning higher-level information hidden in the data. A recently proposed deep learning based model for \ac{amc} makes use of a \ac{cnn} based classifier \cite{o2016convolutional}. The \ac{cnn} model operates on the time domain \ac{iq} data and learns different matched filters for various \ac{snr}. However, this model may not be efficient on data with unknown sampling rates and pulse shaping filters which the model has never encountered during the training phase. Also being a fixed input length model, the number of modulated symbols the model can process remains limited across various symbol rates. Furthermore, the training and computational complexity of the model increases with increasing input sample length. In \cite{baseline}, the authors extended the analysis on the effect of \ac{cnn} layer sizes and depths on classification accuracy. They also proposed complex inception modules combining \ac{cnn} and \ac{lstm} modules for improving the classification results. In this paper we show that simple \ac{lstm} models can itself achieve good accuracy, if input data is formatted as amplitude and phase (polar coordinates) instead of \ac{iq} samples (rectangular coordinates).
+
+This paper proposes a \ac{lstm} \cite{Hochreiter:lstm} based deep learning classifier solution, which can learn long term temporal representations, to address the aforementioned issues. The proposed variable input length model can capture sample rate variations without explicit feature extraction. We first train the LSTM model to classify 11 typical modulation types, as also used in \cite{o2016radio}, and show our approach outperforms the \ac{soa}. Being a variable input length model we also show that the model enables efficient classification on variable sample rates and sequence lengths. Even though these deep learning models can provide good classification accuracies on lower input sample lengths, their computational power requirements are still high preventing them from low-end sensor deployment as Electrosense.
+
+The wireless sensing nodes deployed in the Electrosense network consist of a low-cost and bandwidth limited \ac{sdr} interfaced with a small sized embedded platform \cite{electrosense}. \ac{psd} and \ac{iq} pipelines are enabled in the sensor to support various applications producing data in the order of 50-100~Kbps and 50~Mbps respectively. First, the embedded hardware of the sensors is not powerful enough to handle performance intensive \ac{amc} algorithms. Second, transferring \ac{iq} samples to the backend for classification by enabling the \ac{iq} pipeline is not a scalable solution as it is expensive in terms of data transfer and storage. Finally, the sensors are bandwidth limited which prevents them from acquiring wideband signals.
+%\sofie{The paragraph above is very good and should probably come in intro - makes it all very clear why you have 3 contributions. }
+
+%\sofie{Start a new paragraph here. You talked about the memory, length of effects and then jump to the sensor - make this a second contribution in a new paragraph.}
+To enable instantiation of the newly proposed \ac{lstm} model for modulation classification in a large distributed network of low cost sensor nodes, we compare various approaches to decrease the implementation cost of the classifier. In the first approach we study the advantages and limitations of classification models for modulation classification on a deployed distributed sensor network with limited bandwidth sensors based on averaged magnitude \ac{fft} data which decreases the communication cost by a factor 1000. Moreover, quantized versions of the proposed models are studied in detail for sensor deployment. These quantized versions can be run on a low cost sensor and do not require the instantiation of the classifier in the cloud. As a result, the sensor should only communicate the decision variable, which further decreases the communication cost. %\sofie{This paragraph might be hard to read - you actually never told the reader that your lstm will work in the cloud...}
+The \emph{code and datasets} for all the deep learning models are \emph{made public} for future research\footnote{\label{noterepo}\url{https://github.com/zeroXzero/modulation_classif}}. The models are also available for use through Electrosense. %\sofie{Make it stronger: even say that it is all public and available for use through Elecrosense.}
+
+The contribution of this paper is thus threefold. First, we develop a new \ac{lstm} based deep learning solution using time domain amplitude and phase samples which provides \ac{soa} results for high \ac{snr}s on a standard dataset. Second, we explore the use of deep learning models for technology classification task in a distributed sensor network only using averaged magnitude \ac{fft} data. %\sofie{I am still confused shy this averaged fft should come first. I would see this as a compression of the ideal approach, that should be introduced first?}
+Finally, we explore the model performance by quantizing the deep neural networks for sensor deployment.
+
+The rest of the paper is organized as follows. The classification problem is clearly stated in Section~\ref{problem}. A brief overview of the modulation dataset and the channel models used are presented in Section~\ref{dataset}.  Section~\ref{models} explains the \ac{lstm} model used for classification and the parameters used for training along with other implementation details. Section~\ref{results} details the classification results and discusses the advantages of the proposed model. Low-implementation cost models are discussed in Section~\ref{lmodels}. Conclusions and future work are presented in Section~\ref{conclusion}.
+
+
