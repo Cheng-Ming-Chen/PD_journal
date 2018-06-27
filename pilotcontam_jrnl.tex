@@ -399,7 +399,7 @@
 %Local and Centralized Deep Learning for \\Signal Classification
 %Distributed Deep Learning Models for Wireless Signal Classification
 \title{
- Deep Learning Models for Wireless Signal Classification with Distributed Low-Cost Spectrum Sensors
+ Pilot Decontamination with Deep Learning Models
 }
 %
 %
@@ -412,10 +412,8 @@
 % was not built to handle multiple paragraphs
 %
 %\author{
- \author{Sreeraj~Rajendran,~\IEEEmembership{Student Member,~IEEE,}
-        Wannes~Meert,~\IEEEmembership{Member,~IEEE}
-        Domenico Giustiniano,~\IEEEmembership{Senior Member,~IEEE,}
-        Vincent Lenders,~\IEEEmembership{Member,~IEEE}
+ \author{Cheng-Ming~Chen,~\IEEEmembership{Student Member,~IEEE},
+ 		Sreeraj~Rajendran,~\IEEEmembership{Student Member,~IEEE,}
         and~Sofie~Pollin,~\IEEEmembership{Senior Member,~IEEE.}% <-this % stops a space
         
         
@@ -485,7 +483,7 @@
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Deep learning, Modulation classification, LSTM, CNN, Spectrum sensing.
+Deep learning, Pilot Contamination, Massive MIMO.
 \end{IEEEkeywords}
 
 
@@ -534,29 +532,24 @@ Deep learning, Modulation classification, LSTM, CNN, Spectrum sensing.
 
 % % Acronym file
 \input{sections/acronyms}
-
 \input{sections/intro}
 
 
-\section{Problem Statement}
+\section{System Model}
 \label{problem}
-\input{sections/problem}
+\input{sections/system_model_and_performance_metrics}
 
-\section{Modulation Datasets}
+\section{Channel Separation with Deep Learning}
 \label{dataset}
 \input{sections/dataset}
 
-\section{Model Description}
+\section{Measurement of propagation channels}
 \label{models}
 \input{sections/models}
 
 \section{Results and discussion}
 \label{results}
 \input{sections/results}
-
-\section{Resource Friendly Models}
-\label{lmodels}
-\input{sections/lmodels}
 
 \section{Conclusion and Future work}
 \label{conclusion}
@@ -729,7 +722,7 @@ Deep learning, Modulation classification, LSTM, CNN, Spectrum sensing.
 \bibliographystyle{IEEEtran}
 \bibliography{sections/bibliography}
 
-\input{sections/biographies}
+% \input{sections/biographies}
 % biography section
 % 
 % If you have an EPS/PDF photo (graphicx package needed) extra braces are
