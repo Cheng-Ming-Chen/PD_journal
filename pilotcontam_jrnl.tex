@@ -344,6 +344,10 @@
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
 % (Unless specifically asked to do so by the journal or conference you plan
 % to submit to, of course. )
+% \usepackage[font=small,format=plain,labelsep=period,justification=RaggedRight,singlelinecheck=0]{caption}
+\usepackage[singlelinecheck=0]{caption}
+\usepackage[font=small,singlelinecheck=1]{subcaption}
+\usepackage[pdftex]{graphicx}
 \usepackage{amsmath}
 \usepackage[nospace,noadjust]{cite}
 \usepackage{amsfonts}
@@ -355,7 +359,7 @@
 \usepackage{smartdiagram}
 \usepackage{metalogo}
 \usepackage{balance}
-\usepackage[caption=false]{subfig}
+%\usepackage[caption=false]{subfig}
 \usepgfplotslibrary{units}
 \usepgfplotslibrary{groupplots}
 \usetikzlibrary{patterns}
@@ -366,17 +370,15 @@
 \usetikzlibrary{calc,positioning,shapes,decorations.pathreplacing,snakes}
 \usepackage{graphicx}
 \DeclareCaptionLabelSeparator{periodspace}{.\quad}
-\captionsetup{font=footnotesize,singlelinecheck=false, justification=centering}
 \captionsetup{font=footnotesize,singlelinecheck=false}
-\captionsetup[sub]{font=footnotesize,singlelinecheck=true}
+%\captionsetup{font=footnotesize,singlelinecheck=false}
+%\captionsetup[sub]{font=footnotesize,singlelinecheck=true}
 \usepackage[nolist]{acronym}
 
 \setlength{\textfloatsep}{5pt}
 \newcommand{\squeezeup}{\vspace{-3.5mm}}
 
 \newcommand{\sreeraj}[1]{{\color{purple}[SR: #1]}}
-\newcommand{\domenico}[1]{{\color{blue}[DG: #1]}}
-\newcommand{\vincent}[1]{{\color{brown}[VL: #1]}}
 \newcommand{\sofie}[1]{{\color{violet}[SP: #1]}}
 
 
