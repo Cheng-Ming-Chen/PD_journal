@@ -6,59 +6,59 @@ The two main impacts caused by pilot contamination include: first, the channel e
 
 Many work have been proposed about mitigating pilot contamination also known as pilot decontamination. The focus of this paper will be in the category of pilot-based estimation approach\cite{elijah2016comprehensive}\footnote{Subspace-based estimation approach is out of our scope as their accuracy depends on large number of antennas and the sampling rate in the coherence time.}. Pilot sequence allocation for inter-cell users with different channel support has been proposed in\cite{yin2013coordinated,adhikary2013joint,you2015pilot}. This method utilizes channel covariance matrices of both desired and interfering UEs. It has significant improvement but is restricted for channels with orthogonal support. Furthermore, this method assumes the individual channel covariance information has been available in advance. In \cite{bjornson2016massive}, the authors showed that to have individual channel covariance is not necessary in improving channel estimation. By a two-stage estimation procedure, one can collect the summation of channel covariance from UEs which caused pilot contamination with some extra pilot overhead. However, as they do not collect individual channel information, this method still could not deal channels with overlapping support. In \cite{ngo2017cell}, a greedy pilot scheduling was proposed. In each iteration, the algorithm first checks the UE with the lowest SE. Then, updates the pilot assignment to schedule away that UE. This procedure iterates until all UEs meet their SE criterion. Two concerns of this method include: First, the rescheduling is not time efficient and accurate. The pilot reallocation is triggered by assuming the bad SE is due to pilot contamination. Second, without individual channel information, the system still cannot avoid interference which might coherently combined in the data transmission phase. In summary, most of the research work focus on improving channel estimation by either Bayesian estimation or greedy pilot rescheduling. The Bayesian estimation improves significantly if there is no overlapping in the channel support. The greedy pilot rescheduling tries to improve channel estimation, but UEs with similar angular support are still in the same pool for data transmission. Finally, inter-cell interference is still unavoidable.
 
-\begin{figure*} 
-\centering
-\begin{subfigure}[b]{0.1\textwidth}
-   \hspace{0mm}          %\includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip,width=0.8\linewidth]
-\includegraphics[viewport=250 85 2000 490, clip, scale=0.3]
-{figures/pilot_contamination_figure1.eps}\caption{}%\caption{Uplink pilot training phase: Pilot contamination in Cell 0 is caused by the interfering user from Cell 1 which has channel with similar angular support to the desired user. The pilot contamination cannot be eliminated by the Bayesian estimator. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting for the service in the other coherence blocks.}
-\label{fig:PC_of_OVERLAP}
-\end{subfigure}
+% \begin{figure*} 
+% \centering
+% \begin{subfigure}[b]{0.1\textwidth}
+%    \hspace{0mm}          %\includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip,width=0.8\linewidth]
+% \includegraphics[viewport=250 85 2000 490, clip, scale=0.3]
+% {figures/pilot_contamination_figure1.eps}\caption{}%\caption{Uplink pilot training phase: Pilot contamination in Cell 0 is caused by the interfering user from Cell 1 which has channel with similar angular support to the desired user. The pilot contamination cannot be eliminated by the Bayesian estimator. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting for the service in the other coherence blocks.}
+% \label{fig:PC_of_OVERLAP}
+% \end{subfigure}
 
-%\centering
-\begin{subfigure}[b]{0.1\textwidth}
-   \hspace{0mm}          %\includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip,width=0.8\linewidth]
-\includegraphics[viewport=250 125 2200 490, clip, scale=0.3]
-{figures/pilot_contamination_figure2.eps}\caption{}%\caption{Uplink pilot training phase: Pilot coordination can improve channel estimation quality. The users with difference angular support are scheduled together, and relying on the Bayesian channel estimator, the channel estimation can be improved significantly.}
-\label{fig:PC_of_NOOVERLAP}
-\end{subfigure}
+% %\centering
+% \begin{subfigure}[b]{0.1\textwidth}
+%    \hspace{0mm}          %\includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip,width=0.8\linewidth]
+% \includegraphics[viewport=250 125 2200 490, clip, scale=0.3]
+% {figures/pilot_contamination_figure2.eps}\caption{}%\caption{Uplink pilot training phase: Pilot coordination can improve channel estimation quality. The users with difference angular support are scheduled together, and relying on the Bayesian channel estimator, the channel estimation can be improved significantly.}
+% \label{fig:PC_of_NOOVERLAP}
+% \end{subfigure}
 
-%\centering
-\begin{subfigure}[b]{0.1\textwidth}
-   \hspace{0mm}          %\includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip,width=0.8\linewidth]
-\includegraphics[viewport=250 125 2200 490, clip, scale=0.3]
-{figures/pilot_contamination_figure3.eps}\caption{}%\caption{Uplink data transmission phase (we only show the data transmission to the Cell 0): Only pilot coordination cannot fully avoids the interference being coherently combined during data transmission.}
-\label{fig:PC_of_DATA}
-\end{subfigure}
+% %\centering
+% \begin{subfigure}[b]{0.1\textwidth}
+%    \hspace{0mm}          %\includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip,width=0.8\linewidth]
+% \includegraphics[viewport=250 125 2200 490, clip, scale=0.3]
+% {figures/pilot_contamination_figure3.eps}\caption{}%\caption{Uplink data transmission phase (we only show the data transmission to the Cell 0): Only pilot coordination cannot fully avoids the interference being coherently combined during data transmission.}
+% \label{fig:PC_of_DATA}
+% \end{subfigure}
 
-    %\centering
-  %\subfloat[Uplink pilot training phase: Pilot contamination in Cell 0 is caused by the interfering user from Cell 1 which has channel with similar angular support to the desired user. The pilot contamination cannot be eliminated by the Bayesian estimator. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting for the service in the other coherence blocks.]{%
- %      \includegraphics[trim={9.2cm 2.3cm 6.5cm 2cm},clip,width=0.8\linewidth]{figures/pilot_contamination_figure1.eps}}
-%    \label{fig:1a}\hfill
-%  \subfloat[Uplink pilot training phase: Pilot coordination can improve channel estimation quality. The users with difference angular support are scheduled together, and relying on the Bayesian channel estimator, the channel estimation can be improved significantly.]{%
-%        \includegraphics[trim={9.2cm 3.3cm 6.5cm 2cm},clip,width=0.8\linewidth]{figures/pilot_contamination_figure2.eps}}
-%     \label{fig:1b}\hfill
-%\subfloat[Uplink data transmission phase (we only show the data transmission to the Cell 0): Only pilot coordination cannot fully avoids the interference being coherently combined during data transmission.]{%
-%        \includegraphics[trim={8.5cm 3.3cm 6.5cm 2cm},clip,width=0.8\linewidth]{figures/pilot_contamination_figure3.eps}}
-%     \label{fig:1c} 
-  \caption{\ref{fig:PC_of_OVERLAP} and \ref{fig:PC_of_NOOVERLAP} demonstrate the inter-cell interference in the channel estimation phase. While \ref{fig:PC_of_OVERLAP} shows two users with high overlap in angular support, \ref{fig:PC_of_NOOVERLAP} illustrates the effect of pilot rescheduling to assign a pilot sequence to two UEs with different angular support. However, if there are any UEs among the active UE set to have similar angular support, only pilot rescheduling cannot avoid the inter-cell interference as demonstrated in \ref{fig:PC_of_DATA}. Eventually, the system has to replace the active UE which shares similar angular support in the active UE set to the other inactive UE in the network. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting to be served in the other coherence blocks.}
-  \label{fig1} 
-\end{figure*}
+%     %\centering
+%   %\subfloat[Uplink pilot training phase: Pilot contamination in Cell 0 is caused by the interfering user from Cell 1 which has channel with similar angular support to the desired user. The pilot contamination cannot be eliminated by the Bayesian estimator. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting for the service in the other coherence blocks.]{%
+%  %      \includegraphics[trim={9.2cm 2.3cm 6.5cm 2cm},clip,width=0.8\linewidth]{figures/pilot_contamination_figure1.eps}}
+% %    \label{fig:1a}\hfill
+% %  \subfloat[Uplink pilot training phase: Pilot coordination can improve channel estimation quality. The users with difference angular support are scheduled together, and relying on the Bayesian channel estimator, the channel estimation can be improved significantly.]{%
+% %        \includegraphics[trim={9.2cm 3.3cm 6.5cm 2cm},clip,width=0.8\linewidth]{figures/pilot_contamination_figure2.eps}}
+% %     \label{fig:1b}\hfill
+% %\subfloat[Uplink data transmission phase (we only show the data transmission to the Cell 0): Only pilot coordination cannot fully avoids the interference being coherently combined during data transmission.]{%
+% %        \includegraphics[trim={8.5cm 3.3cm 6.5cm 2cm},clip,width=0.8\linewidth]{figures/pilot_contamination_figure3.eps}}
+% %     \label{fig:1c} 
+%   \caption{\ref{fig:PC_of_OVERLAP} and \ref{fig:PC_of_NOOVERLAP} demonstrate the inter-cell interference in the channel estimation phase. While \ref{fig:PC_of_OVERLAP} shows two users with high overlap in angular support, \ref{fig:PC_of_NOOVERLAP} illustrates the effect of pilot rescheduling to assign a pilot sequence to two UEs with different angular support. However, if there are any UEs among the active UE set to have similar angular support, only pilot rescheduling cannot avoid the inter-cell interference as demonstrated in \ref{fig:PC_of_DATA}. Eventually, the system has to replace the active UE which shares similar angular support in the active UE set to the other inactive UE in the network. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting to be served in the other coherence blocks.}
+%   \label{fig1} 
+% \end{figure*}
 
-
+% trim={<left> <lower> <right> <upper>}
 
 \begin{figure*} [htp]
     \centering
-  \subfloat[Vanilla autoencoder]{%
-       \includegraphics[width=0.2\linewidth]{figures/autoencoder.jpg}}
-    \label{fig:autoencoder}\hfill
-  \subfloat[Variational autoencoder]{%
-        \includegraphics[width=0.2\linewidth]{figures/vae.jpg}}
-    \label{fig:vae}\hfill
-  \subfloat[InfoGAN]{%
-        \includegraphics[width=0.29\linewidth]{figures/infogan.jpg}}
-    \label{fig:infogan}\hfill
-  \caption{(a) Encoder decoder structure of an unsupervised vanilla autoencoder model, (b) Stochastic variant of the autoencoder where the internal representations are probability distributions in general (c) InfoGAN \cite{infogan} which is a generative model which can categorize input data by maximizing mutual information.}
+  \subfloat[]{%
+       \includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip, width=0.3\linewidth]{figures/pilot_contamination_figure1.eps}}
+    \label{fig:PC_of_OVERLAP}\hfill
+  \subfloat[]{%
+        \includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip, width=0.3\linewidth]{figures/pilot_contamination_figure2.eps}}
+    \label{fig:PC_of_NOOVERLAP}\hfill
+  \subfloat[]{%
+        \includegraphics[trim={8.5cm 3.3cm 6.5cm 3.1cm},clip,width=0.31\linewidth]{figures/pilot_contamination_figure3.eps}}
+    \label{fig:PC_of_DATA}\hfill
+  \caption{\ref{fig:PC_of_OVERLAP} and \ref{fig:PC_of_NOOVERLAP} demonstrate the inter-cell interference in the channel estimation phase. While \ref{fig:PC_of_OVERLAP} shows two users with high overlap in angular support, \ref{fig:PC_of_NOOVERLAP} illustrates the effect of pilot rescheduling to assign a pilot sequence to two UEs with different angular support. However, if there are any UEs among the active UE set to have similar angular support, only pilot rescheduling cannot avoid the inter-cell interference as demonstrated in \ref{fig:PC_of_DATA}. Eventually, the system has to replace the active UE which shares similar angular support in the active UE set to the other inactive UE in the network. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting to be served in the other coherence blocks.}
   \label{fig:models} 
 \end{figure*}
 
