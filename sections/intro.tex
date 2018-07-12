@@ -50,21 +50,20 @@ Many work have been proposed about mitigating pilot contamination also known as 
 \begin{figure*} [htp]
     \centering
   \subfloat[]{%
-       \includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip, width=0.3\linewidth]{figures/pilot_contamination_figure1.eps}}
-    \label{fig:PC_of_OVERLAP}\hfill
+       \includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip, width=0.3\linewidth]{figures/pilot_contamination_figure1.eps} \label{fig:PC_of_OVERLAP}}
+    \hfill
   \subfloat[]{%
-        \includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip, width=0.3\linewidth]{figures/pilot_contamination_figure2.eps}}
-    \label{fig:PC_of_NOOVERLAP}\hfill
+        \includegraphics[trim=9.2cm 2.3cm 6.5cm 2cm,clip, width=0.3\linewidth]{figures/pilot_contamination_figure2.eps}\label{fig:PC_of_NOOVERLAP}}
+    \hfill
   \subfloat[]{%
-        \includegraphics[trim={8.5cm 3.3cm 6.5cm 3.1cm},clip,width=0.31\linewidth]{figures/pilot_contamination_figure3.eps}}
-    \label{fig:PC_of_DATA}\hfill
-  \caption{\ref{fig:PC_of_OVERLAP} and \ref{fig:PC_of_NOOVERLAP} demonstrate the inter-cell interference in the channel estimation phase. While \ref{fig:PC_of_OVERLAP} shows two users with high overlap in angular support, \ref{fig:PC_of_NOOVERLAP} illustrates the effect of pilot rescheduling to assign a pilot sequence to two UEs with different angular support. However, if there are any UEs among the active UE set to have similar angular support, only pilot rescheduling cannot avoid the inter-cell interference as demonstrated in \ref{fig:PC_of_DATA}. Eventually, the system has to replace the active UE which shares similar angular support in the active UE set to the other inactive UE in the network. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting to be served in the other coherence blocks.}
-  \label{fig:models} 
+        \includegraphics[trim={8.5cm 3.3cm 6.5cm 3.1cm},clip,width=0.31\linewidth]{figures/pilot_contamination_figure3.eps}\label{fig:PC_of_DATA}}
+    \hfill
+  \caption{\protect\subref{fig:PC_of_OVERLAP} and \protect\subref{fig:PC_of_NOOVERLAP} demonstrate the inter-cell interference in the channel estimation phase. While \protect\subref{fig:PC_of_OVERLAP} shows two users with high overlap in angular support, \protect\subref{fig:PC_of_NOOVERLAP} illustrates the effect of pilot rescheduling to assign a pilot sequence to two UEs with different angular support. However, if there are any UEs among the active UE set to have similar angular support, only pilot rescheduling cannot avoid the inter-cell interference as demonstrated in \protect\subref{fig:PC_of_DATA}. Eventually, the system has to replace the active UE which shares similar angular support in the active UE set to the other inactive UE in the network. Note: while active users are involved in the pilot and data transmission in a coherence block, the inactive users are waiting to be served in the other coherence blocks.}
 \end{figure*}
 
 From the related work, we have two findings: First, there is still no efficient method of pre-determining the channel correlation of UEs which are scheduled in the same pilot code. Our argument is that even relying on greedy scheduling, there is a big delay which is highly dependent on the propagation environment till the criterion of minimum SE is met. 
 %Moreover, the number of iterations is highly dependent to the environment. 
-We therefore propose to apply a deep learning model on the contaminated pilots and detect if there is high correlation in their angular support. With this, we can reschedule the pilot sequences in an earlier phase precisely as shown in Fig. \ref{fig:1b}. Second, a key point here is that if the UEs have similar channel support, by rescheduling their pilots, one can improve the channel estimation, but cannot avoid the high channel correlation in the data transmission as illustrated in Fig. \ref{fig:1c}. Instead of reschedule the pilot to improve channel estimation, one might even have to drop the UE which might potentially cause high inter-cell interference during the data transmission.  %The authors in \cite{fernandes2013inter} proposed a time-shifted pilot allocation protocol. By joint frame scheduling with neighboring cells, uplink pilot of self cell overlaps only with downlink precoded data in the other cells. The only pilot contamination source comes only from the neighboring BSs, and hence the interference is less critical as in the data phase does not combined coherently. However, it is very challenging to joint schedule the traffic planning among multiple cells.
+We therefore propose to apply a deep learning model on the contaminated pilots and detect if there is high correlation in their angular support. With this, we can reschedule the pilot sequences in an earlier phase precisely as shown in Fig.\ref{fig:PC_of_NOOVERLAP}. Second, a key point here is that if the UEs have similar channel support, by rescheduling their pilots, one can improve the channel estimation, but cannot avoid the high channel correlation in the data transmission as illustrated in Fig. \ref{fig:PC_of_DATA}. Instead of reschedule the pilot to improve channel estimation, one might even have to drop the UE which might potentially cause high inter-cell interference during the data transmission.  %The authors in \cite{fernandes2013inter} proposed a time-shifted pilot allocation protocol. By joint frame scheduling with neighboring cells, uplink pilot of self cell overlaps only with downlink precoded data in the other cells. The only pilot contamination source comes only from the neighboring BSs, and hence the interference is less critical as in the data phase does not combined coherently. However, it is very challenging to joint schedule the traffic planning among multiple cells.
 We summarize our contributions and challenges as follows:
 \begin{itemize}
 
