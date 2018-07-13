@@ -49,7 +49,7 @@
 
 
 
-\documentclass[journal]{IEEEtran}
+\documentclass[conference]{IEEEtran}
 %\documentclass[12pt, draftclsnofoot, onecolumn]{IEEEtran}
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
@@ -418,11 +418,19 @@
 % was not built to handle multiple paragraphs
 %
 %\author{
- \author{Cheng-Ming~Chen,~\IEEEmembership{Student Member,~IEEE},
- 		Sreeraj~Rajendran,~\IEEEmembership{Student Member,~IEEE,}
-        
-Emil~Bj{\"o}rnson,~\IEEEmembership{Senior Member,~IEEE}
-        and~Sofie~Pollin,~\IEEEmembership{Senior Member,~IEEE.}% <-this % stops a space
+%  \author{Cheng-Ming~Chen,~\IEEEmembership{Student Member,~IEEE},
+%  		Sreeraj~Rajendran,~\IEEEmembership{Student Member,~IEEE,}   
+% Emil~Bj{\"o}rnson,~\IEEEmembership{Senior Member,~IEEE}
+%         and~Sofie~Pollin,~\IEEEmembership{Senior Member,~IEEE.}% <-this % stops a space
+%}
+\author{\IEEEauthorblockN{Cheng-Ming~Chen\IEEEauthorrefmark{1}, Sreeraj Rajendran\IEEEauthorrefmark{1}, Emil~Bj{\"o}rnson\IEEEauthorrefmark{2},  and Sofie Pollin\IEEEauthorrefmark{1}}
+\\
+\IEEEauthorblockA{
+Email: \IEEEauthorrefmark{1}\{chengming.chen, sreeraj.rajendran, sofie.pollin\}@esat.kuleuven.be\\
+\IEEEauthorrefmark{2}emil.bjornson@liu.se\\
+\IEEEauthorrefmark{1} ESAT, KU Leuven, Belgium,
+\IEEEauthorrefmark{2} Electrical Engineering, Linkp{\"o}ing University, Sweden\\
+}}
         
         
 %\thanks{M. Shell was with the Department
@@ -430,7 +438,7 @@ Emil~Bj{\"o}rnson,~\IEEEmembership{Senior Member,~IEEE}
 %GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this % stops a space
 %\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
 %\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}
-}
+
 
 % note the % following the last \IEEEmembership and also \thanks - 
 % these prevent an unwanted space from occurring between the last author name

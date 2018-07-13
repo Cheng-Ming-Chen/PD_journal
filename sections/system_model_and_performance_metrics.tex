@@ -31,13 +31,38 @@ Let $\zeta$ denotes a pilot reuse set which includes all UEs that share a common
 %\end{aligned}
 \end{equation}
 Moreover, $\char`\\$ stands for excluding elements in the set. As shown in (\ref{eq:pilot contamination}), the interfering channel from the neighboring cells leak directly to the desired estimate.
-\subsection{Bayesian Estimation}
-We temporarily assume that the second order channel covariance matrices are available. \cm{we will discuss this later} To facilitate the active UE set scheduling in order to avoid high inter-cell-interference, we modify the joint Bayesian channel estimator from \cite{yin2013coordinated}, which estimates channels from all cells simultaneously. By vectorizing the Bayesian channel estimate in the $\zeta$ set, we estimate $\hat{\mathbf{h}}_{\zeta}=[\mathbf{h}_{jU_{1}[s_{1}]}^{T}...\mathbf{h}_{jU_{L}[s_{L}]}^{T}]^{T},\:s_{l}\in \text{UEs in set } \zeta$ 
+
+\subsection{The Antenna Averaged Correlation Coefficient}
+We temporarily assume that the second order channel covariance matrices are available. \cm{we will discuss this later}
+In order to find the correlation metric for the desired and interfering channels, we first look at only the channel estimation of the desired UE.
+\begin{equation}
+\hat{\mathbf{h}}^{Bay}_{jU_j[k]} = \sqrt{p}\mathbf{R}_{jU_j[k]} \mathbf{\Psi}_{jU_j[k]} \mathbf{y}_{jU_j[k]}, 
+\end{equation}
+where the superscript $Bay$ stands for the Bayesian channel estimation, $\sigma_{n}^{2}$ is the variance of regularized noise and $\mathbf{\Psi}_{jU_j[k]}$ is defined as
+
+\begin{equation}
+\mathbf{\Psi}_{jU_j[k]} = \Bigg(\tau\:{p}\sum_{U_l[s]\in\zeta} \mathbf{R}_{j,U_l[s]} + \sigma^2_n \mathbf{I}_M\Bigg)^{-1}.
+\label{eq:psi_function}
+\end{equation}
+
+From \cite{bjornson2017massive}, we know if two UEs shared the same pilot sequence, the correlation of their channels can be defined as
+\begin{equation}
+\begin{split}
+\rho={} &
+\frac{\E\left\{ \left(\hat{\mathbf{h}}_{jU_{j}[k]}\right)^{H}\hat{\mathbf{h}}_{jU_{l}[s]}\right\} }{\sqrt{\E\left\{ \left\Vert \hat{\mathbf{h}}_{jU_{j}[k]}\right\Vert ^{2}\right\} \E\left\{ \left\Vert \hat{\mathbf{h}}_{jU_{l}[s]}\right\Vert ^{2}\right\} }}=\\
+& \frac{tr\left(\mathbf{R}_{jU_{j}[k]}\mathbf{R}_{jU_{l}[s]}\mathbf{\Psi}_{jU_{j}[k]}\right)}{\sqrt{tr\left(\mathbf{R}_{jU_{j}[k]}\mathbf{R}_{jU_{j}[k]}\mathbf{\Psi}_{jU_{j}[k]}\right)tr\left(\mathbf{R}_{jU_{l}[s]}\mathbf{R}_{jU_{l}[s]}\mathbf{\Psi}_{jU_{j}[k]}\right)}}
+\end{split}
+\end{equation}
+
+\subsection{Joint Bayesian Channel Estimation}
+To facilitate the active UE set scheduling in order to avoid high inter-cell-interference, we modify the joint Bayesian channel estimator from \cite{yin2013coordinated}, which estimates channels from all cells simultaneously. By vectorizing the Bayesian channel estimate in the $\zeta$ set, we obtain $\hat{\mathbf{h}}_{\zeta}=[\hat{\mathbf{h}}_{jU_{1}[s_{1}]}^{T}...\hat{\mathbf{h}}_{jU_{L}[s_{L}]}^{T}]^{T},\:s_{l}\in \{\text{UEs in the set } \zeta\}$ 
 
 \begin{equation}
 \hat{\mathbf{h}}_{\zeta}^{Bay}=\mathbf{R}_{\zeta}\mathbf{S}^{T}(\mathbf{S}\mathbf{R}_{\zeta}\mathbf{S}^{T}+\sigma_{n}^{2}\mathbf{I}_{M})^{-1}\mathbf{y}_{jU_{j}[k]},
 \end{equation}
-where $\mathbf{R}_{\zeta}=diag\{\mathbf{R}_{jU_{1}[s_{1}],...,}\mathbf{R}_{jU_{L}[s_{L}]}\},\:s_{l}\in \text{UEs in set } \zeta$ and $\mathbf{S}\triangleq[I_{M}...I_{M}]$ is a $M\times ML$ matrix.
+where $\mathbf{R}_{\zeta}=diag\{\mathbf{R}_{jU_{1}[s_{1}],...,}\mathbf{R}_{jU_{L}[s_{L}]}\},\:s_{l}\in \{\text{UEs in the set } \zeta\}$ and $\mathbf{S}\triangleq[I_{M}...I_{M}]$ is a $M\times ML$ matrix.
+
+
 
 \cm{introduce favorable condition for reducing inter-cell interference}
 
