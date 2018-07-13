@@ -1,27 +1,40 @@
 %https://cloudconvert.com/pptx-to-eps
 % convert power point to eps
-We consider in an $L$-cell massive MIMO network, where a single BS per cell is equipped 
+We consider in an $L$-cell massive MIMO network with full spectrum reuse, where a single BS per cell is equipped 
 with $M$ antennas. %and 
 %serves simultaneously to $K_A$ active UEs. 
-In each network $l$, there are totally $K$ UEs in the UE set $K_l$, among which there are $K_A$ active UEs in the UE set $U_l\in K_l$, selected to be served in some resource blocks. In this multi-cell network, we assume the BSs are all synchronized in time and pilot, UL and DL data are also aligned in the network.\footnote{The assumption of synchronization between UL pilots provides a worst
+In each network $l$, there are totally $K$ UEs in the UE set $K_l\triangleq\{1,...,K\}$, among which there are $K_A$ active UEs in the UE set $U_l\in K_l$, selected to be served in some resource blocks. We assume the pilot sequence used by single-antenna UEs in the same
+cell are mutually orthogonal. In this multi-cell network, we assume the BSs are all synchronized in time, that is pilot, UL and DL data are all aligned in the network.\footnote{The assumption of synchronization between UL pilots provides a worst
 case scenario from a pilot contamination point of view. For any lack of
-synchronization will tend to statistically decorrelate the pilots.}
+synchronization will tend to statistically decorrelate the pilots.} The channel $\mathbf{h}_{jU_j[k]}\in\mathbb{C}^{M}$ from UE $U_j[k]$ to BS $j$ with a correlation due to finite multipath angular spread at the BS  can be represented as
+\begin{equation}
+\mathbf{h}_{jU_{j}[k]}=\mathbf{R}_{jU_{j}[k]}^{1/2}\mathbf{h}_{W},
+\end{equation}
+where $\mathbf{R}_{jU_{j}[k]}$ is the second order channel covariance matrix and is defined as $\mathbf{R}_{jU_j[k]}=\E{({\mathbf{h}}_{jU_j[k]}{\mathbf{h}}_{jU_j[k]}^H)}$ and $\mathbf{h}_{W}\sim \mathcal{CN\left(\mathbf{0},\mathbf{I}_M\right)}$ stands for zero-mean complex Gaussian distribution with covariance $\mathbf{I}_M$. \cm{R can be from measured channel or one-ring model}
 
 \subsection{CSI at the BS receiver}
 A pilot sequence $\mathbf{\phi}_{U_j[k]}\in \mathbb{C}^{\tau} $ is transmitted by the $k_{th}$ UE in the UE set $U_j$ of cell $j$ for the UL channel estimation. $\tau$ denotes the length of pilot sequence in a coherence block, and sequence $\mathbf{{\phi}}$ which fulfills the constraint $\left\Vert\mathbf{\phi}\right\Vert^2=\tau$ is scaled by UE's transmit power $\sqrt{p}$ \footnote{Here we assume all UEs transmit the same power. }. Moreover, an orthogonal pilot codebook is assumed here. So for two different pilot sequences, there is zero correlation.  The received matrix in the $j_{th}$ BS is represented as 
 \begin{equation} \label{eq:Yj}
-\mathbf{Y}_j = \sqrt{p}\Big(\underbrace{\sum_{k = 1}^{K_A} \mathbf{h}_{jU_j[k]} \mathbf{\phi}_{U_j[k]}^T}_\text{Desired pilots} +\underbrace{\sum_{\substack{l=1 \\ l\neq j}}^{L}\sum_{k = 1}^{K} \mathbf{h}_{jU_l[k]} \mathbf{\phi}_{U_l[k]}^T}_\text{Inter-cell pilots}\Big) + \mathbf{N},   
+\mathbf{Y}_j = \sqrt{p}\Big(\underbrace{\sum_{k = 1}^{K_A} \mathbf{h}_{jU_j[k]} \mathbf{\phi}_{U_j[k]}^T}_\text{Desired pilots} +\underbrace{\sum_{\substack{l=1 \\ l\neq j}}^{L}\sum_{k = 1}^{K_A} \mathbf{h}_{jU_l[k]} \mathbf{\phi}_{U_l[k]}^T}_\text{Inter-cell pilots}\Big) + \mathbf{N},   
 \end{equation}
-where $\mathbf{h}_{jU_j[k]}\in\mathbb{C}^{M}$ stands for channel from UE $U_j[k]$ to BS $j$ and $\mathbf{N}$ is the independent identically distributed
+%where $\mathbf{h}_{jU_j[k]}\in\mathbb{C}^{M}$ stands for channel from UE $U_j[k]$ to BS $j$ and 
+where $\mathbf{N}$ is the independent identically distributed
 (i.i.d.) complex Gaussian noise with elements distributed as $\mathcal{CN\left(\mathit{0,N_o}\right)}$.
-The BS then correlates the received pilot with $\mathbf{\phi}_{U_j[k]}^*$ to estimate the desired CSI $\mathbf{h}_{jU_j[k]}$:%.
+The BS then correlates the received pilot with $\mathbf{\phi}_{U_j[k]}^*$ to obtain the channel observation of $\mathbf{h}_{jU_j[k]}$:%.
 \begin{equation} 
-\mathbf{y}_{jU_j[k]} = \tau\sqrt{p}\Big(\underbrace{\mathbf{h}_{jU_j[k]}}_\text{Desired pilot} +\underbrace{\sum_{U_l[s]\in \\ \zeta\char`\\\{(l,s) = (j,k)\}}\mathbf{h}_{jU_l[s]}}_\text{Interfering pilots}\Big) + \tilde{\mathbf{n}}.   
+\mathbf{y}_{jU_j[k]} = \tau\sqrt{p}\Big(\underbrace{\mathbf{h}_{jU_j[k]}}_\text{Desired pilot} +\underbrace{\sum_{U_l[s]\in \\ \zeta\char`\\\{(l,s) = (j,k)\}}\mathbf{h}_{jU_l[s]}}_\text{Interfering pilots}\Big) + \tilde{\mathbf{n}}.   \label{eq:pilot contamination}
 \end{equation}
-Let $\zeta$ denotes a pilot reuse set which includes all intra or inter UEs that share a common pilot sequence and can be defined as
+Let $\zeta$ denotes a pilot reuse set which includes all UEs that share a common pilot sequence and can be defined as
 \begin{equation}
 %\begin{aligned}
 \zeta \subseteq \{U_l[s]:\mathbf{\phi}_{U_j[k]}^T \mathbf{\phi}_{U_l[s]}^*=\tau, \{l=1,...,L;s=1,...,K_A\}\}.
 %\end{aligned}
 \end{equation}
-Moreover, $\char`\\$ stands for excluding elements in the set.
+Moreover, $\char`\\$ stands for excluding elements in the set. As shown in (\ref{eq:pilot contamination}), the interfering channel from the neighboring cells leak directly to the desired estimate.
+\subsection{Bayesian Estimation}
+We temporarily assume that the second order channel covariance matrices are available. \cm{we will discuss this later} To facilitate the active UE set scheduling in order to avoid high inter-cell-interference, we modify the joint Bayesian channel estimator from \cite{yin2013coordinated}, which estimates channels from all cells simultaneously. By vectorizing the Bayesian channel estimate in the $\zeta$ set, we estimate $\hat{\mathbf{h}}_{\zeta}=[\mathbf{h}_{jU_{1}[s_{1}]}^{T}...\mathbf{h}_{jU_{L}[s_{L}]}^{T}]^{T},\:s_{l}\in \text{UEs in set } \zeta$ 
+
+\begin{equation}
+\hat{\mathbf{h}}_{\zeta}^{Bay}=\mathbf{R}_{\zeta}\mathbf{S}^{T}(\mathbf{S}\mathbf{R}_{\zeta}\mathbf{S}^{T}+\sigma_{n}^{2}\mathbf{I}_{M})^{-1}\mathbf{y}_{jU_{j}[k]},
+\end{equation}
+where $\mathbf{R}_{\zeta}=diag\{\mathbf{R}_{jU_{1}[s_{1}],...,}\mathbf{R}_{jU_{L}[s_{L}]}\},\:s_{l}\in \text{UEs in set } \zeta$ and $\mathbf{S}\triangleq[I_{M}...I_{M}]$ is a $M\times ML$ matrix.
