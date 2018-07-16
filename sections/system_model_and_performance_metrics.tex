@@ -34,7 +34,7 @@ Moreover, $\char`\\$ stands for excluding elements in the set. As shown in (\ref
 
 \subsection{The Antenna Averaged Correlation Coefficient}
 We temporarily assume that the second order channel covariance matrices are available. \cm{we will discuss this later}
-In order to find the correlation metric for the desired and interfering channels, we first look at only the channel estimation of the desired UE.
+In order to find the correlation metric for the desired and interfering channels as an input of deep learning model, we first look at only the channel estimation of the desired UE.
 \begin{equation}
 \hat{\mathbf{h}}^{Bay}_{jU_j[k]} = \sqrt{p}\mathbf{R}_{jU_j[k]} \mathbf{\Psi}_{jU_j[k]} \mathbf{y}_{jU_j[k]}, 
 \end{equation}
@@ -62,11 +62,18 @@ To facilitate the active UE set scheduling in order to avoid high inter-cell-int
 \end{equation}
 where $\mathbf{R}_{\zeta}=diag\{\mathbf{R}_{jU_{1}[s_{1}],...,}\mathbf{R}_{jU_{L}[s_{L}]}\},\:s_{l}\in \{\text{UEs in the set } \zeta\}$ and $\mathbf{S}\triangleq[I_{M}...I_{M}]$ is a $M\times ML$ matrix.
 
+% convert matlab to latex
+%https://tex.stackexchange.com/questions/329308/how-to-convert-a-matlab-figure-to-a-latex-code-not-to-a-graphic
 
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/NMSE_correlation.eps}
+	\caption{Correlation of NMSE channel estimation error to the antenna-averaged correlation coefficient. A spatially correlated channel, based on
+the local scattering model with Gaussian angular distribution and ASD $ \sigma_\phi= 10^\circ$.}
+	\label{fig:channelhardendingvsantnumber}
+\end{figure}
 
 \cm{introduce favorable condition for reducing inter-cell interference}
 
-
-\cm{introduction correlation of covariance matrix- need some simulation to prove, as an indicator for deep learning model}
 
 \cm{introduction UL spectral efficiency which takes into account channel estimation errors}
