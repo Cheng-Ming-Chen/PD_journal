@@ -1,16 +1,14 @@
 %https://cloudconvert.com/pptx-to-eps
 % convert power point to eps
-We consider in an $L$-cell massive MIMO network with full spectrum reuse, where a single BS per cell is equipped 
+In a network with full spectrum reuse, a massive MIMO system with $L$ cells is considered. Where a single BS per cell is equipped 
 with $M$ antennas. %and 
 %serves simultaneously to $K_A$ active UEs. 
-In each network $l$, there are totally $K$ UEs in the UE set $K_l\triangleq\{1,...,K\}$, among which there are $K_A$ active UEs in the UE set $U_l\in K_l$, selected to be served in some resource blocks. We assume the pilot sequence used by single-antenna UEs in the same
-cell are mutually orthogonal. In this multi-cell network, we assume the BSs are all synchronized in time, that is pilot, UL and DL data are all aligned in the network.\footnote{The assumption of synchronization between UL pilots provides a worst
-case scenario from a pilot contamination point of view. For any lack of
-synchronization will tend to statistically decorrelate the pilots.} The channel $\mathbf{h}_{jU_j[k]}\in\mathbb{C}^{M}$ from UE $U_j[k]$ to BS $j$ with a correlation due to finite multipath angular spread at the BS  can be represented as
+In each cell $l$, there are total $K$ UEs in the UE set $K_l\triangleq\{1,...,K\}$. Moreover, within this set, a number of $K_A$ active UEs in the subset $U_l$, $U_l\subset K_l$, are selected to be served in some resource blocks. Note that in this multi-cell network, the pilot sequence used by single-antenna UEs in the same
+cell are assumed to be mutually orthogonal. Moreover, we assume the BSs are all synchronized in time. Furthermore, the pilot, UL and DL data are all aligned in the network.\footnote{There are alternative pilot structures. For example, to superimpose the the pilot sequences of one cell to the neighboring cells on their UL data transmission\cite{upadhya2017superimposed}. Or some cells send UL pilots, while others send DL data \cite{fernandes2013inter}. As in this paper, rather than relying on adjusting the sequence length so as to decorrelate the channel estimation, we target on smartly collecting the channel information for pilot decontamination, we choose to align all frame planning among multiple-cells.} The channel $\mathbf{h}_{jU_j[k]}\in\mathbb{C}^{M}$ from UE $U_j[k]$ to BS $j$ with a correlation due to finite multipath angular spread at the BS  can be represented as
 \begin{equation}
-\mathbf{h}_{jU_{j}[k]}=\mathbf{R}_{jU_{j}[k]}^{1/2}\mathbf{h}_{W},
+\mathbf{h}_{jU_{j}[k]}=\beta_{jU_{j}[k]}\mathbf{R}_{jU_{j}[k]}^{1/2}\mathbf{h}_{W},
 \end{equation}
-where $\mathbf{R}_{jU_{j}[k]}$ is the second order channel covariance matrix and is defined as $\mathbf{R}_{jU_j[k]}=\E{({\mathbf{h}}_{jU_j[k]}{\mathbf{h}}_{jU_j[k]}^H)}$ and $\mathbf{h}_{W}\sim \mathcal{CN\left(\mathbf{0},\mathbf{I}_M\right)}$ stands for zero-mean complex Gaussian distribution with covariance $\mathbf{I}_M$. \cm{R can be from measured channel or one-ring model}
+where $\beta$ is the individual large scale fading gain, $\mathbf{R}_{jU_{j}[k]}$ is the second order channel covariance matrix and is defined as $\mathbf{R}_{jU_j[k]}=\E{({\mathbf{h}}_{jU_j[k]}{\mathbf{h}}_{jU_j[k]}^H)}$ and $\mathbf{h}_{W}\sim \mathcal{CN}\left(\mathbf{0},\mathbf{I}_M\right)$ stands for zero-mean complex Gaussian distribution with covariance $\mathbf{I}_M$. The covariance matrix R can be from measured channel or one-ring model\cm{need a citation}, with the normalization $tr(\mathbf{R})=M$.
 
 \subsection{CSI at the BS receiver}
 A pilot sequence $\mathbf{\phi}_{U_j[k]}\in \mathbb{C}^{\tau} $ is transmitted by the $k_{th}$ UE in the UE set $U_j$ of cell $j$ for the UL channel estimation. $\tau$ denotes the length of pilot sequence in a coherence block, and sequence $\mathbf{{\phi}}$ which fulfills the constraint $\left\Vert\mathbf{\phi}\right\Vert^2=\tau$ is scaled by UE's transmit power $\sqrt{p}$ \footnote{Here we assume all UEs transmit the same power. }. Moreover, an orthogonal pilot codebook is assumed here. So for two different pilot sequences, there is zero correlation.  The received matrix in the $j_{th}$ BS is represented as 
