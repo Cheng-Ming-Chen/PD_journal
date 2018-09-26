@@ -36,10 +36,16 @@ In order to find the correlation metric for the desired and interfering channels
 \begin{equation}
 \hat{\mathbf{h}}^{Bay}_{jA_j[k]} = \sqrt{p}\mathbf{R}_{jA_j[k]} \mathbf{\Psi}_{jA_j[k]} \mathbf{y}_{jA_j[k]}, 
 \end{equation}
-where the superscript $Bay$ stands for the Bayesian channel estimation, $\sigma_{n}^{2}$ is the variance of regularized noise and $\mathbf{\Psi}_{jA_j[k]}$ is defined as
+where the superscript $Bay$ stands for the Bayesian channel estimation %, $\sigma_{n}^{2}$ is the variance of regularized noise 
+and $\mathbf{\Psi}_{jA_j[k]}$ is defined as
+
+%\begin{equation}
+%\mathbf{\Psi}_{jA_j[k]} = \Bigg(\tau\:{p}\sum_{A_l[s]\in\zeta} \mathbf{R}_{j,A_l[s]} + \sigma^2_n \mathbf{I}_M\Bigg)^{-1}.
+%\label{eq:psi_function}
+%\end{equation}
 
 \begin{equation}
-\mathbf{\Psi}_{jA_j[k]} = \Bigg(\tau\:{p}\sum_{A_l[s]\in\zeta} \mathbf{R}_{j,A_l[s]} + \sigma^2_n \mathbf{I}_M\Bigg)^{-1}.
+\mathbf{\Psi}_{jA_j[k]} = \Bigg(\tau\:{p}\sum_{A_l[s]\in\zeta} \mathbf{R}_{j,A_l[s]} + \mathbf{I}_M\Bigg)^{-1}.
 \label{eq:psi_function}
 \end{equation}
 
@@ -56,7 +62,8 @@ From \cite{bjornson2017massive}, we know if two UEs shared the same pilot sequen
 In order to avoid high inter-cell-interference, we need to obtain channels from all the active UE set, we modify the joint Bayesian channel estimator from \cite{yin2013coordinated}, which estimates channels from all cells simultaneously. By vectorizing the Bayesian channel estimate in the $\zeta$ set, we obtain $\hat{\mathbf{h}}_{\zeta}=[\hat{\mathbf{h}}_{jA_{1}[s_{1}]}^{T}...\hat{\mathbf{h}}_{jA_{L}[s_{L}]}^{T}]^{T},\:s_{l}\in \{\text{UEs in the set } \zeta\}$ 
 
 \begin{equation}
-\hat{\mathbf{h}}_{\zeta}^{Bay}=\mathbf{R}_{\zeta}\mathbf{S}^{T}(\mathbf{S}\mathbf{R}_{\zeta}\mathbf{S}^{T}+\sigma_{n}^{2}\mathbf{I}_{M})^{-1}\mathbf{y}_{jA_{j}[k]},
+\hat{\mathbf{h}}_{\zeta}^{Bay}=\mathbf{R}_{\zeta}\mathbf{S}^{T}%(\mathbf{S}\mathbf{R}_{\zeta}\mathbf{S}^{T}+\sigma_{n}^{2}\mathbf{I}_{M})^{-1}\mathbf{y}_{jA_{j}[k]},
+(\mathbf{S}\mathbf{R}_{\zeta}\mathbf{S}^{T}+\mathbf{I}_{M})^{-1}\mathbf{y}_{jA_{j}[k]},
 \end{equation}
 where $\mathbf{R}_{\zeta}=Diag\{\mathbf{R}^{1,1}_{jA_{1}[s_{1}],...,}\mathbf{R}^{L,L}_{jA_{L}[s_{L}]}\} $ and %\:s_{l}\in \{\text{UEs in the set } \zeta\}$ and 
 $\mathbf{S}\triangleq[I_{M}...I_{M}]$ is a $M\times ML$ matrix.
@@ -78,8 +85,23 @@ is varied between $-180^\circ$ and $180^\circ$}
 
 \begin{figure}[t!]
 	\centering
+	\includegraphics[width=1\linewidth]{figures/outdoor_scenario.jpg}
+	\caption{We deployed $36$ UEs which were arranged into three rows in an outdoor LoS scenario. In each row, we put $12$ UEs, each pair of UEs are embedded in a single USRP with antenna spacing of $1.09\lambda$. Meanwhile, there were two ways of setting up the locations of the two-32 antennas patch arrays which were tilted in the front of windows for $24^\circ$ .}
+	\label{fig:The measured outdoor scenario}
+\end{figure}
+
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/user_equipment.PNG}
+	\caption{The user equipments were connected to off-the-shelf external-PAs in order to enlarge the sensitivity level for the long distance measurement. The antenna spacing is around $1.09\lambda$ for a center frequency of $2.61$GHz.}
+	\label{fig:UserEquipment}
+\end{figure}
+
+\begin{figure}[t!]
+	\centering
 	\includegraphics[width=1\linewidth]{figures/2DMUSICcollocated_row1_array1.eps}
-	\caption{The 2D-MUSIC angular transformation of the measured outdoor channel. The related locations of the UEs are exhibited in the angular domain.}
+	\caption{The 2D-MUSIC angular transformation of the measured outdoor channel. The related locations of the UEs are reflected in the angular domain.}
 	\label{fig:2DMUSIC-measured-collocated-channel}
 \end{figure}
 
