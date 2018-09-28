@@ -1,1 +1,31 @@
-Fill here
+A very often assumed scenario in the massive MIMO society was evaluated in this experiment, similar to the one-ring model\cite{bjornson2017massive}, with the BS located on a tall building while all UEs were on the ground. The scenario fits to the proposed method, as compared to the previous  non-line-of-sight (NLoS) measurement\cite{Chen2018pilot}, there is less overlapping in the angular support from the contaminated channel in this LoS scenario. Moreover, if the angular support is not sparse, we can actually assume the channel property is closer to the non-correlated channel, and there is no benefit in doing pilot scheduling\footnote{Please refer to Fig. 3.5 in \cite{bjornson2017massive}, for the uncorrelated fading channel,  there is less impact in upper limit as compared to the correlated channel which overlaps in the angular domain. Moreover, it also shows no difference in pilot scheduling. However, the difference to theoretical one-ring model, from the angular transform results in Section\ref{results}, the angular support is with irregular shape and spread. The measured LoS channel}.   An outdoor channel measurement was conducted in the building ESAT2 of KU Leuven as presented in Fig. \ref{fig:The measured outdoor scenario}. The BS antenna arrays were located $21$m high from the ground.  Specifically, we deployed the antenna arrays in two different ways, i.e., collocated in the center as shown in two green squares or distributed with a distance of $9.5$m as shown in yellow squares. The purpose of the two deployments is to collect more channel realizations. 
+
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/outdoor_scenario.jpg}
+	\caption{We deployed $36$ UEs which were arranged into three rows in an outdoor LoS scenario. In each row, we put $12$ UEs, each pair of UEs are embedded in a single USRP with antenna spacing of $1.09\lambda$. Meanwhile, there were two ways of setting up the locations of the two-32 antennas patch arrays which were tilted in the front of windows for $24^\circ$ .}
+	\label{fig:The measured outdoor scenario}
+\end{figure}
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/user_equipment.PNG}
+	\caption{The user equipments were connected to off-the-shelf external-PAs in order to enlarge the sensitivity level for the long distance measurement. The antenna spacing is around $1.09\lambda$ for a center frequency of $2.61$GHz.}
+	\label{fig:UserEquipment}
+\end{figure}
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/2DMUSICcollocated_row1_array1.eps}
+	\caption{The 2D-MUSIC angular transformation of the measured outdoor channel. The related locations of the UEs are reflected in the angular domain.}
+	\label{fig:2DMUSIC-measured-collocated-channel}
+\end{figure}
+
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/NMSE_correlation_allcases_collocated_wPA.eps}
+	\caption{Correlation of NMSE channel estimation error to the antenna-averaged correlation coefficient. A spatially correlated channel, based on
+the measured correlation channel.}
+	\label{fig:channel_correlation_measured}
+\end{figure}

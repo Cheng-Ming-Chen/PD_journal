@@ -34,7 +34,8 @@ where
 \end{equation}
 $\alpha$, $\varphi$ and $\theta$ are the normalized antenna spacing in %unit 
 %of
-wavelength, azimuthal angle and elevation angle, respectively. The detail of the 2D MUSIC transform can be found in \cite{Chen2018pilot}\footnote{We modify the steering vector}.%The covariance matrix $R$ can be from measured channel or the local scattering spatial correlation model\cite{bjornson2017massive}. Moreover, $\mathbf{h}_{W}\sim \mathcal{CN}\left(\mathbf{0},\mathbf{I}_M\right)$ stands for zero-mean complex Gaussian distribution with covariance $\mathbf{I}_M$. 
+wavelength, azimuthal angle and elevation angle, respectively. The detail of the 2D  multiple signal classifi-
+cation (MUSIC) transformation can be referred to \cite{Chen2018pilot}\footnote{The difference to the previous work, here we modify the steering vector to match with the spherical coordination.}.%The covariance matrix $R$ can be from measured channel or the local scattering spatial correlation model\cite{bjornson2017massive}. Moreover, $\mathbf{h}_{W}\sim \mathcal{CN}\left(\mathbf{0},\mathbf{I}_M\right)$ stands for zero-mean complex Gaussian distribution with covariance $\mathbf{I}_M$. 
 
 \subsection{CSI at the BS receiver}
 A pilot sequence $\mathbf{\phi}_{A_j[k]}\in \mathbb{C}^{\tau} $ is transmitted by the $k_{th}$ UE in the UE set $A_j$ for the UL channel estimation. $\tau$ denotes the length of pilot sequence in a coherence block, and sequence $\mathbf{{\phi}}$ which fulfills the constraint $\left\Vert\mathbf{\phi}\right\Vert^2=\tau$ is scaled by UE's transmit power $\sqrt{p}$ \footnote{Here we assume all UEs transmit the same power. }. As an orthogonal pilot codebook is assumed here, for two different pilot sequences, there is zero cross-correlation.  The received matrix in the $j_{th}$ BS is represented as 
@@ -109,39 +110,18 @@ is varied between $-180^\circ$ and $180^\circ$}
 	\label{fig:channel_correlation_model}
 \end{figure}
 
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=1.0\linewidth]{figures/outdoor_scenario.jpg}
-	\caption{We deployed $36$ UEs which were arranged into three rows in an outdoor LoS scenario. In each row, we put $12$ UEs, each pair of UEs are embedded in a single USRP with antenna spacing of $1.09\lambda$. Meanwhile, there were two ways of setting up the locations of the two-32 antennas patch arrays which were tilted in the front of windows for $24^\circ$ .}
-	\label{fig:The measured outdoor scenario}
-\end{figure}
 
 
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=1\linewidth]{figures/user_equipment.PNG}
-	\caption{The user equipments were connected to off-the-shelf external-PAs in order to enlarge the sensitivity level for the long distance measurement. The antenna spacing is around $1.09\lambda$ for a center frequency of $2.61$GHz.}
-	\label{fig:UserEquipment}
-\end{figure}
 
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=1\linewidth]{figures/2DMUSICcollocated_row1_array1.eps}
-	\caption{The 2D-MUSIC angular transformation of the measured outdoor channel. The related locations of the UEs are reflected in the angular domain.}
-	\label{fig:2DMUSIC-measured-collocated-channel}
-\end{figure}
+
+
+
+
 
 
 \cm{introduce favorable condition for reducing inter-cell interference}
 
 
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=1.0\linewidth]{figures/NMSE_correlation_allcases_collocated_wPA.eps}
-	\caption{Correlation of NMSE channel estimation error to the antenna-averaged correlation coefficient. A spatially correlated channel, based on
-the measured correlation channel.}
-	\label{fig:channel_correlation_measured}
-\end{figure}
 
 
 \cm{introduce UL spectral efficiency which takes into account channel estimation errors}
